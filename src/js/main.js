@@ -61,24 +61,35 @@ const patch = () => {
 
 //DELETE
 const del = () => {
-   
+
+     axios.delete('https://jsonplaceholder.typicode.com/posts/2')
+    .then(response => {renderOutput(response)})
 }
 
 
+//MULTIPLAS REQUISIÇÕES
 const multiple = () => {
-    console.log('multiple');
+
+    Promise.all([
+        axios.get('https://jsonplaceholder.typicode.com/posts?_limit=5'),
+        axios.get('https://jsonplaceholder.typicode.com/users?_limit=5')
+    ]).then(response => {
+        console.table(response[0].data)
+        console.table(response[1].data)
+    })
 }
+
 
 const transform = () => {
-    console.log('transform');
+    
 }
 
 const errorHandling = () => {
-    console.log('errorHandling');
+    
 }
 
 const cancel = () => {
-    console.log('cancel');
+    
 }
 
 const clear = () => {
