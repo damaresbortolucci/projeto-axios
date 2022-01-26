@@ -3,25 +3,52 @@ const dataEl = document.getElementById('data');
 const headersEl = document.getElementById('headers');
 const configEl = document.getElementById('config');
 
+
+//GET
 const get = () => {
-    console.log('get');
+
+    const config={
+        params: {
+            _limit: 10 //params = parâmetros passados pela url, no exemplo: max 10 responses
+        }
+    }
+
+    axios.get('https://jsonplaceholder.typicode.com/posts', config)
+        .then(response => {renderOutput(response)})
 }
 
+
+//POST
 const post = () => {
-    console.log('post');
+
+    const data = {
+        title: 'foo',
+        body: 'bar',
+        userId: 1,  
+    }
+
+    axios.post('https://jsonplaceholder.typicode.com/posts', data)
+    .then(response => {renderOutput(response)})
 }
 
+
+//PUT
 const put = () => {
     console.log('put');
 }
 
+
+//PATCH
 const patch = () => {
     console.log('patch');
 }
 
+
+//DELETE
 const del = () => {
     console.log('delete');
 }
+
 
 const multiple = () => {
     console.log('multiple');
