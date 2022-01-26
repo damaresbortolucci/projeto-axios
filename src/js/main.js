@@ -80,17 +80,56 @@ const multiple = () => {
 }
 
 
+//MODIFICAR UMA RESPONSE
 const transform = () => {
+
+    const config={
+        params: {
+            _limit: 5
+        },
+        transformResponse: [function (data) {
+            // Do whatever you want to transform the data
+            const payload = JSON.parse(data).map( obj => {
+                return{
+                    title: obj.title // retornando apenas o title
+                }
+            });
+            
+            return payload;
+          }]
+    }
+
+    axios.get('https://jsonplaceholder.typicode.com/posts', config)
+        .then(response => renderOutput(response))
     
 }
 
+
+//ERRORS
 const errorHandling = () => {
+
+    axios.get('https://jsonplaceholder.typicode.com/postsz')
+    .then(response => renderOutput(response))
+    .catch(error => renderOutput(error.response));
     
 }
 
+
+//CANCELAR UMA REQUEST
 const cancel = () => {
+
+    const controller = new AbortController(); //interface javascript
+    const config = {
+        signal: controller.signal
+    };
+
+    axios.get('https://jsonplaceholder.typicode.com/posts', config)
+    .then(response => renderOutput(response))
     
+    // essa função poderia ser chamada, por exemplo, por meio de um buttom
+    controller.abort()
 }
+
 
 const clear = () => {
     statusEl.innerHTML = '';
@@ -99,6 +138,7 @@ const clear = () => {
     headersEl.innerHTML = '';
     configEl.innerHTML = '';
 }
+
 
 const renderOutput = (response) => {
     // Status
