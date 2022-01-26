@@ -22,8 +22,8 @@ const get = () => {
 const post = () => {
 
     const data = {
-        title: 'foo',
-        body: 'bar',
+        title: 'Axios-post',
+        body: 'Post realizado com sucesso',
         userId: 1,  
     }
 
@@ -32,21 +32,36 @@ const post = () => {
 }
 
 
-//PUT
+//PUT - atualização total
 const put = () => {
-    console.log('put');
+
+    const data = {
+        title: 'Axios-put',
+        body: 'put realizado com sucesso',
+        userId: 1
+    }
+
+    axios.put('https://jsonplaceholder.typicode.com/posts/1', data)
+    .then(response => {renderOutput(response)})
 }
 
 
-//PATCH
+//PATCH - atualização parcial
 const patch = () => {
-    console.log('patch');
+
+    const data = {
+        title: 'Axios-patch',
+    }
+
+    axios.patch('https://jsonplaceholder.typicode.com/posts/1', data)
+    .then(response => {renderOutput(response)})
+    
 }
 
 
 //DELETE
 const del = () => {
-    console.log('delete');
+   
 }
 
 
